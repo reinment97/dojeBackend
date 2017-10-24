@@ -34,7 +34,7 @@ public class DataController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/studentList.json")//, method = {RequestMethod.POST})
+	@RequestMapping(value = "/studentList.json", method = {RequestMethod.POST})
 	public @ResponseBody List<Student> getStudentList(@RequestParam Map<String, String> reqParam) throws Exception {
 		
 		List<Student> studentList = new ArrayList<Student>();
