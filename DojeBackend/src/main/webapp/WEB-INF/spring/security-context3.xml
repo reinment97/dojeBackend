@@ -7,8 +7,7 @@
 
 	<!-- URL -->
 	<http use-expressions="true">
-		<intercept-url pattern="/studentList.imi" access="permitAll" />
-		<intercept-url pattern="/studentList.json" access="permitAll" />
+		<intercept-url pattern="/api/**" access="permitAll" />
 		<intercept-url pattern="/login/loginForm.imi" access="permitAll" />
 		<intercept-url pattern="/main2.imi" access="permitAll" />
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
@@ -18,6 +17,7 @@
 			username-parameter="id" password-parameter="password" />
 		<logout logout-url="/logout" logout-success-url="/main2.imi" />
 		<access-denied-handler error-page="/login/accessDenied.imi" />
+		<csrf disabled="true" />
 	</http>
 	<beans:bean id="userDetailsService"
 		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
