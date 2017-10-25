@@ -11,4 +11,24 @@
         FROM
             tb_student
     </select>
+    
+    <select id="getStudent" parameterType="hashmap" resultType="kr.ac.yyhighschool.model.Student">
+        SELECT
+            id,
+            name,
+            age,
+            created, 
+            intro
+        FROM
+            tb_student
+        WHERE
+        	id = #{id}
+    </select>
+    
+    <insert id="saveStudentInfo" parameterType="hashmap" >
+		INSERT INTO tb_student
+			(name, age, created, intro)
+		VALUES
+			( #{name}, #{age}, now(), #{intro} )
+    </insert>
 </mapper>

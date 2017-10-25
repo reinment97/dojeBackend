@@ -8,6 +8,7 @@
 	<!-- URL -->
 	<http use-expressions="true">
 		<intercept-url pattern="/api/**" access="permitAll" />
+		<intercept-url pattern="/studentList.imi" access="permitAll" />
 		<intercept-url pattern="/login/loginForm.imi" access="permitAll" />
 		<intercept-url pattern="/main2.imi" access="permitAll" />
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />

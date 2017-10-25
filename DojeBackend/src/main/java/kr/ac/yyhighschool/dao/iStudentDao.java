@@ -8,4 +8,6 @@ import kr.ac.yyhighschool.model.Student;
 public interface iStudentDao {
 	public List<Map<String, Object>> getStudentList();
 	public List<Student> getStudents();
+	public Student getStudentInfo(String id);
+	public int saveStudentInfo(Map<String, String> reqParam);
 }
