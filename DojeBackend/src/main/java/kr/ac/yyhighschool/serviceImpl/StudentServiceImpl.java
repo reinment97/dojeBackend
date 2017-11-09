@@ -1,5 +1,6 @@
 package kr.ac.yyhighschool.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,26 @@ import kr.ac.yyhighschool.model.Student;
 import kr.ac.yyhighschool.service.iStudentService;
 
 @Service("studentService")
+
 public class StudentServiceImpl implements iStudentService {
+	@Override
+	public Map<String, Object> saveStudentInfo(Map<String, String> reqParam) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try{
+			studentDao.saveStudentInfo(reqParam);
+			result.put("code", "00");
+			result.put("message", "SUCCESS");
+			
+		}catch(Exception e){
+			result.put("code", "01");
+			result.put("message", "unknown error");
+		}
+		
+		return result;
+	}
 
 	@Resource(name="studentDao")
 	private iStudentDao studentDao;
@@ -28,6 +48,11 @@ public class StudentServiceImpl implements iStudentService {
 	@Override
 	public List<Student> getStudents() {
 		return studentDao.getStudents();
+	}
+	
+	@Override
+	public Student getStudentInfo(String id) {
+		return studentDao.getStudentInfo(id);
 	}
 
 }

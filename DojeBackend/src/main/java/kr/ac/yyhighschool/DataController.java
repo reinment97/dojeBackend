@@ -34,7 +34,7 @@ public class DataController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/studentList.json", method = {RequestMethod.POST})
+	@RequestMapping(value = "/studentList.json")//, method = {RequestMethod.POST})
 	public @ResponseBody List<Student> getStudentList(@RequestParam Map<String, String> reqParam) throws Exception {
 		
 		List<Student> studentList = new ArrayList<Student>();
@@ -42,5 +42,27 @@ public class DataController {
 		
 		return studentList;
 	}
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/studentInfo.json")//, method = {RequestMethod.POST})
+	public @ResponseBody Student getStudentInfo(@RequestParam Map<String, String> reqParam) throws Exception {
+		
+		Student student = studentService.getStudentInfo(reqParam.get("id"));
+		
+		return student;
+	}
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/saveStudentInfo.json")//, method = {RequestMethod.POST})
+	public @ResponseBody Map<String, Object> saveStudentInfo(@RequestParam Map<String, String> reqParam) throws Exception {
+		System.out.println(reqParam);
+		return studentService.saveStudentInfo(reqParam);
+		
+	}
+	
 
 }

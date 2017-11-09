@@ -14,6 +14,12 @@ import kr.ac.yyhighschool.model.Student;
 @Repository("studentDao")
 public class StudentDaoImpl implements iStudentDao {
 
+	@Override
+	public int saveStudentInfo(Map<String, String> reqParam) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("saveStudentInfo", reqParam);
+	}
+
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -29,6 +35,11 @@ public class StudentDaoImpl implements iStudentDao {
 	@Override
 	public List<Student> getStudents() {
 		return sqlSession.selectList("getStudentList");
+	}
+	
+	@Override
+	public Student getStudentInfo(String id) {
+		return sqlSession.selectOne("getStudent", id);
 	}
 
 }
