@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="co.kr.doje.mapper.BoardMapper">
+ 	<select id="getBoardList" resultType="hashmap">
+ 		SELECT board.* , user.useremail as 'writer_name' , IF(ISNULL(board.updated), board.created, board.updated) as 'date' 
+ 		FROM board JOIN user
+ 		ON board.writer = user.id
+ 		ORDER BY date DESC;
+ 	</select>
+ 	
+ 	<select id="getBoard" resultType="hashmap" parameterType="int">
+ 		SELECT board.* , user.useremail as 'writer_name' , IF(ISNULL(board.updated), board.created, board.updated) as 'date' 
+ 		FROM board JOIN user
+ 		ON board.writer = user.id
+ 		WHERE board.id = #{id}
+ 	</select>
+ 	 	
+ 	<insert id="insertBoard" parameterType="hashmap">
+ 		INSERT INTO board(title,content,writer)VALUES(#{title} , #{content} , #{writer})
+ 	</insert>
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE id = #{id}
+	</delete>
+	
+	<update id="updateBoard" parameterType="hashmap">
+		UPDATE board SET title = #{title} , content = #{content} , updated=NOW() WHERE id=#{id}
+	</update>
+</mapper>
